@@ -43,14 +43,14 @@ tensorRT_ins(){
 
 tensorv="10.9.0"
 
-cuda_version="nvcc -V"
+cuda_version=`nvcc -V`
 
 tencuda=`echo "${cuda_version}" | grep "release" | awk '{split($0,a," "); print a[6]}'| cut -b 2-`
 
-cudavma=`echo "$tencuda" | awk '{split($0,a,"."); print a[1]}'`
-cudavmi=`echo "$tencuda" | awk '{split($0,a,"."); print a[2]}'`
+cudama=`echo "${tencuda}" | awk '{split($0,a,"."); print a[0]a[1]}'`
+cudami=`echo "${tencuda}" | awk '{split($0,a,"."); print a[2]}'`
 
-echo "The tensorRT version to be installed is ${tensorv} , on ${ki} release ${irelease} in the Architecture ${architecture} and the cuda version is ${cuda_version}, if you need a different version of tensorRT other than ${tensorv} enter y"
+echo "The tensorRT version to be installed is ${tensorv} , on ${ki} release ${irelease} in the Architecture ${architecture} and the cuda version is ${cudama}.${cudami}, if you need a different version of tensorRT other than ${tensorv} enter y"
 read reps3
 
 if [ "$reps3" == "y" ]
@@ -61,11 +61,11 @@ then
 fi
 echo "Preparing to install tensorRT with version ${tensorv}"
 
-tr1=`sudo wget https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/${tensorv}/local_repo/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudavma}.${cudavmi}_1.0-1_${architecture}.deb`
+tr1=`sudo wget https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/${tensorv}/local_repo/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
+exit
+tr2=`sudo dpkg -i ./nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
 
-tr2=`sudo dpkg -i ./nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudavma}.${cudavmi}_1.0-1_${architecture}.deb`
-
-tr3=`sudo cp /var/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudavma}.${cudavmi}/nv-tensorrt-local-*-keyring.gpg /usr/share/keyrings/`
+tr3=`sudo cp /var/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}/nv-tensorrt-local-*-keyring.gpg /usr/share/keyrings/`
 
 tr4=`sudo apt-get -y update`
 
@@ -75,28 +75,20 @@ tr5=`sudo apt-get -y install tensorrt`
 
 
 verify_tensorRT() {
-
 verify1=`dpkg-query -W tensorrt`
 verify1s="$?"
 
 if [ "$verify1s" == "0" ]
 then
- echo "TensorRT install successful"
- echo "The installed version is ${verify1}"
+ echo "TensorRT install successful ${verify1}"
 else
  echo "The install of tensorRT failed"
- echo "${verify1}"
 fi
-
 }
 
 verify_tensorRT2() {
-
-python3
->>> import tensorrt
->>> print(tensorrt.__version__)
->>> assert tensorrt.Builder(tensorrt.Logger())
-
+tr1=`python3 -c "import tensorrt;print (tensorrt.__version__);assert tensorrt.Builder(tensorrt.Logger())"`
+echo "tr1 is ${tr1}"
 }
 
 tensorRT_ins
