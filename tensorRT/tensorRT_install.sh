@@ -42,15 +42,21 @@ step52=`python3 -m pip3 install tensorrt_dispatch-*-cp3x-none-linux_x86_64.whl`
 tensorRT_ins(){
 
 tensorv="10.9.0"
-
+`source $HOME/.bashrc`
 cuda_version=`nvcc -V`
+cudavers="$?"
 
-tencuda=`echo "${cuda_version}" | grep "release" | awk '{split($0,a," "); print a[6]}'| cut -b 2-`
+if [ "${cudavers}" == "0" ]
+then
+	tencuda=`echo "${cuda_version}" | grep "release" | awk '{split($0,a," "); print a[6]}'| cut -b 2-`
+	cudama=`echo "${tencuda}" | awk '{split($0,a,"."); print a[1]}'`
+	cudami=`echo "${tencuda}" | awk '{split($0,a,"."); print a[2]}'`
+else
+	echo "nvcc is not installed or in the PATH exiting tensoRT install..."
+	exit
+fi
 
-cudama=`echo "${tencuda}" | awk '{split($0,a,"."); print a[1]}'`
-cudami=`echo "${tencuda}" | awk '{split($0,a,"."); print a[2]}'`
-
-echo "The tensorRT version to be installed is ${tensorv} , on ${ki} release ${irelease} in the Architecture ${architecture} and the cuda version is ${cudama}.${cudami}, if you need a different version of tensorRT other than ${tensorv} enter y"
+echo "The tensorRT version to be installed is \"${tensorv}\" , on \"${ki}\" release \"${irelease}\" in the Architecture \"${architecture}\" and the cuda version is \"${cudama}.${cudami}\", if you need a different version of tensorRT other than \"${tensorv}\" enter \"y\""
 read reps3
 
 if [ "$reps3" == "y" ]
@@ -59,7 +65,7 @@ then
 	read tennv 
 	tensorv="${tennv}"
 fi
-echo "Preparing to install tensorRT with version ${tensorv}"
+echo "Preparing to install tensorRT with version \"${tensorv}\""
 
 tr1=`sudo wget https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/${tensorv}/local_repo/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
 #exit
@@ -87,7 +93,7 @@ fi
 
 verify_tensorRT2() {
 tr1=`python3 -c "import tensorrt;print (tensorrt.__version__);assert tensorrt.Builder(tensorrt.Logger())"`
-echo "tr1 is ${tr1}"
+echo "OUTPUT of second verify tensort logger ${tr1}"
 }
 
 tensorRT_ins

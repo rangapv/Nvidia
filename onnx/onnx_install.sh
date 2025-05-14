@@ -85,7 +85,7 @@ fi
 }
 
 
-pipi_nstall onnx
+pipi_nstall onnx tensorflow
 
 onnx_install gpu
 

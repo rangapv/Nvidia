@@ -2,9 +2,7 @@
 #author:rangapv@yahoo.com
 #07-05-25
 
-
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) > /dev/null 2>&1
-
 
 cuda_cuDNN_alt() {
 
@@ -45,7 +43,7 @@ cuda_cuDNN_inst() {
 distro="${ki}${irelease}"
 architecture="${ARCH}"
 cdnv="9.6.0"
-echo "The cuDNN version to be installed is ${cdnv} , on ${ki} relaese ${irelease} in the Architecture ${architecture}, if you need a different vrsion of cuDNN other than ${cdnv} enter y "
+echo "The cuDNN version to be installed is \"${cdnv}\" , on \"${ki}\" release \"${irelease}\" on the Architecture \"${architecture}\", if you need a different version of cuDNN other than \"${cdnv}\" enter \"y\" "
 read reps1
 if [ "$reps1" == "y" ]
 then
@@ -67,7 +65,6 @@ f6cpre=`sudo apt-get -y install libfreeimage3 libfreeimage-dev`
 
 }
 
-
 verify_cuDNN() {
 
 vrcdnn1=`cp -r /usr/src/cudnn_samples_v9/ $HOME`
@@ -78,3 +75,6 @@ echo "the test result is $vrcdnn3"
 }
 
 cuda_cuDNN_inst
+
+verify_cuDNN
+

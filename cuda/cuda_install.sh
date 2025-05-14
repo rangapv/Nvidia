@@ -65,9 +65,9 @@ cudi3=`sudo cp /var/cuda-repo-${distro}-${cudavma}-${cudavmi}-local/cuda-*-keyri
 cudi4=`sudo apt-get -y update`
 cudi5=`sudo apt-get -y install cuda-toolkit-${cudavma}-${cudavmi}`
 
-echo "export PATH=/usr/local/cuda-${cudavma}-${cudavmi}/bin:$PATH" >> ~/.bashrc
-echo "export LD_LIBRARY_PATH=/usr/local/cuda-${cudavma}-${cudavmi}/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
-
+echo "export PATH=/usr/local/cuda-${cudavma}.${cudavmi}/bin:$PATH" >> ~/.bashrc
+echo "export LD_LIBRARY_PATH=/usr/local/cuda-${cudavma}.${cudavmi}/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
+`source $HOME/.bashrc`
 }
 
 cuda_verify() {
@@ -85,3 +85,6 @@ fi
 }
 
 cuda_inst
+
+cuda_verify
+
