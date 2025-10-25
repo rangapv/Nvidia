@@ -43,9 +43,13 @@ cuda_inst(){
 
 distro="${ki}${irelease}"
 architecture="${ARCH}"
-cudav="12.8.1"
+cudav="12.9.0"
+cudamin_ver="575.51.03-1"
 
-echo "The cuda version to be installed is ${cudav} , on ${ki} relaese ${irelease} in the Architecture ${architecture}, if you need a different vrsion of cuda other than ${cudav} enter y "
+#double check cudav and cudamin_ver in this website
+#https://developer.nvidia.com/cuda-12-9-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
+
+echo "The cuda version to be installed is ${cudav} , on ${ki} relaese ${irelease} in the Architecture ${architecture}, if you need a different version of cuda other than ${cudav} enter y "
 read reps2
 if [ "$reps2" == "y" ]
 then
@@ -59,8 +63,8 @@ echo "Pre-paring to install cuda version ${cudav}"
 cudavma=`echo "$cudav" | awk '{split($0,a,"."); print a[1]}'`
 cudavmi=`echo "$cudav" | awk '{split($0,a,"."); print a[2]}'`
 
-cudi1=`sudo wget https://developer.download.nvidia.com/compute/cuda/${cudav}/local_installers/cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-570.124.06-1_amd64.deb`
-cudi2=`sudo dpkg -i cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-570.124.06-1_amd64.deb`
+cudi1=`sudo wget https://developer.download.nvidia.com/compute/cuda/${cudav}/local_installers/cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb`
+cudi2=`sudo dpkg -i cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb`
 cudi3=`sudo cp /var/cuda-repo-${distro}-${cudavma}-${cudavmi}-local/cuda-*-keyring.gpg /usr/share/keyrings/`
 cudi4=`sudo apt-get -y update`
 cudi5=`sudo apt-get -y install cuda-toolkit-${cudavma}-${cudavmi}`
