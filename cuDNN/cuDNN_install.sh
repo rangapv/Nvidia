@@ -65,6 +65,35 @@ f6cpre=`sudo apt-get -y install libfreeimage3 libfreeimage-dev`
 
 }
 
+cuda_cuDNN_inst_new() {
+
+distro="${ki}${irelease}"
+architecture="${ARCH}"
+cdnv="9.6.0"
+
+#Reference: https://developer.nvidia.com/cudnn-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network&Configuration=Full
+
+echo "The cuDNN version to be installed is \"${cdnv}\" , on \"${ki}\" release \"${irelease}\" on the Architecture \"${architecture}\", if you need a different version of cuDNN other than \"${cdnv}\" enter \"y\" "
+read reps1
+if [ "$reps1" == "y" ]
+then
+        echo "enter the cuDNN version now(format 9.x.x)"
+        read cdn
+        cdnv=${cdn}
+else
+        echo "Continuing with the cuDNN version ${cdnv}"
+fi
+
+f1c=`sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb`
+#break
+f2c=`sudo dpkg -i cuda-keyring_1.1-1_all.deb`
+f4c=`sudo apt-get -y  update`
+f5c=`sudo apt-get -y install cudnn9-cuda-12`
+#f6c=`sudo apt-get -y install libcudnn9-samples`
+f6cpre=`sudo apt-get -y install libfreeimage3 libfreeimage-dev`
+
+}
+
 verify_cuDNN() {
 
 vrcdnn1=`cp -r /usr/src/cudnn_samples_v9/ $HOME`
@@ -74,7 +103,9 @@ echo "the test result is $vrcdnn3"
 
 }
 
-cuda_cuDNN_inst
+#cuda_cuDNN_inst
+
+cuda_cuDNN_inst_new
 
 verify_cuDNN
 
