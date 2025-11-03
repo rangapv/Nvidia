@@ -8,10 +8,10 @@ chklspci=`which lspci`
 chklspcis="$?"
 if [ "$chklspcis" != "0" ]
 then
-	echo "Installing lspci on this box"
-	inst1=`sudo apt-get install pciutils`
+	echo "lspci NOT in this box"
 else
 	echo "lspci is installed in this box proceeding with checks"
+	#echo "`lspci -v`"
 fi
 	
 i1=`lspci | grep -i nvidia`

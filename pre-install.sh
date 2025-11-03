@@ -5,6 +5,16 @@
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) > /dev/null 2>&1
 
 echo "echo $cm1"
+
+
+chklspci=`which lspci`
+chklspcis="$?"
+if [ "$chklspcis" != "0" ]
+then
+        echo "Installing lspci on this box"
+        inst1=`sudo apt-get install pciutils`
+fi
+
 driver() {
 	pre1=`sudo ${cm1} -y update`
 	pre2=`sudo ${cm1} install -y python3-pip vim`
