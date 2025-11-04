@@ -41,7 +41,7 @@ step52=`python3 -m pip3 install tensorrt_dispatch-*-cp3x-none-linux_x86_64.whl`
 
 tensorRT_ins(){
 
-tensorv="10.9.0"
+tensorv="10.10.0"
 `source $HOME/.bashrc`
 cuda_version=`nvcc -V`
 cudavers="$?"
@@ -67,7 +67,21 @@ then
 fi
 echo "Preparing to install tensorRT with version \"${tensorv}\""
 
+tnsrtown="y"
+
+if [[ ( -f "nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb" ) ]]
+then
+	echo "The file \"nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb\" is found in the directory"
+	echo "Do you still need to Download It... ?"
+	echo "Press \"y\" to proceed to Download or any-other key otherwise"
+	read tnsrtown
+fi
+
+if [[ $tnsrtown == "y" ]]
+then
 tr1=`sudo wget https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/${tensorv}/local_repo/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
+fi
+
 #exit
 tr2=`sudo dpkg -i ./nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
 
