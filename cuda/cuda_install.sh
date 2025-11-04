@@ -63,7 +63,19 @@ echo "Pre-paring to install cuda version ${cudav}"
 cudavma=`echo "$cudav" | awk '{split($0,a,"."); print a[1]}'`
 cudavmi=`echo "$cudav" | awk '{split($0,a,"."); print a[2]}'`
 
+if [[ ( ! -f "${cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb}" ) ]]
+then
+	echo "The file \"${cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb}\" is found in the directory"
+	echo "Do you still need to Download the repo... ?"
+	echo "Press \"y\" to proceed to Download or any-other key otherwise"
+	read cudadown
+fi
+
+if [[ $cudadown == "y" ]]
+then
 cudi1=`sudo wget https://developer.download.nvidia.com/compute/cuda/${cudav}/local_installers/cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb`
+fi
+
 cudi2=`sudo dpkg -i cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb`
 cudi3=`sudo cp /var/cuda-repo-${distro}-${cudavma}-${cudavmi}-local/cuda-*-keyring.gpg /usr/share/keyrings/`
 cudi4=`sudo apt-get -y update`
