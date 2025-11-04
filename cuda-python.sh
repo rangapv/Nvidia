@@ -10,7 +10,7 @@ pypip="pip3"
 #install
 cupy1=`${pypip} install cuda-python`
 cupy1s="$?"
-echo "cuda-python installed `{pypip} show cuda-python`"
+echo "cuda-python installed `${pypip} show cuda-python`"
 }
 
 cuda_python
