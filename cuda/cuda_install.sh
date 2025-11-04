@@ -63,7 +63,10 @@ echo "Pre-paring to install cuda version ${cudav}"
 cudavma=`echo "$cudav" | awk '{split($0,a,"."); print a[1]}'`
 cudavmi=`echo "$cudav" | awk '{split($0,a,"."); print a[2]}'`
 
-if [[ ( ! -f "${cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb}" ) ]]
+
+cudadown="y"
+
+if [[ ( -f "${cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb}" ) ]]
 then
 	echo "The file \"${cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb}\" is found in the directory"
 	echo "Do you still need to Download the repo... ?"
