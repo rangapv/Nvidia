@@ -1,2 +1,5 @@
 wget*
 *.tar.gz*
+TensorRT-LLM
+*.zip
+.*
