@@ -20,18 +20,18 @@ fi
 
 if [[ $ninjadown == "y" ]]
 then
-ninj1=`sudo wget https://github.com/ninja-build/ninja/releases/download/v${ninjav}/ninja-linux.zip`
+#ninj1=`sudo wget https://github.com/ninja-build/ninja/releases/download/v${ninjav}/ninja-linux.zip`
+ninj1=`sudo wget -qO /usr/local/bin/ninja.gz https://github.com/ninja-build/ninja/releases/download/v${ninjav}/ninja-linux.zip`
 fi
 
 #sudo wget -qO /usr/local/bin/ninja.gz https://github.com/ninja-build/ninja/releases/download/v1.13.1/ninja-linux.zip
-ninj2=`sudo tar -xf ./ninja-linux.zip -d /usr/local/bin/ninja`
+ninj2=`sudo gunzip /usr/local/bin/ninja.gz`
 
 #sudo gunzip /usr/local/bin/ninja.gz
 
 ninj3=`sudo chmod a+x /usr/local/bin/ninja`
 
-
-ninj5=`sudo ln -s /usr/local/bin/ninja /usr/bin/ninja-build`
+ninj5=`sudo ln -sf /usr/local/bin/ninja /usr/bin/ninja-build`
 
 ninj4=`ninja --version`
 
@@ -43,7 +43,6 @@ then
 else
 	echo "Ninja Install failed"
 fi
-
 }
 
 insta_ninja
