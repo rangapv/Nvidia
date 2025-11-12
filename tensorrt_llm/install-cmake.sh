@@ -6,7 +6,7 @@ source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.s
 
 cmake1() {
 
-cmv="3.27.0"
+cmv="3.30.0"
 cmv1=`echo $cmv | (cut -d '.' -f 1,2)`
 #echo "cmv1 is ${cmv1}"
 cmakedown="y"
@@ -25,9 +25,9 @@ cmc1=`sudo wget https://cmake.org/files/v${cmv1}/cmake-${cmv}-linux-x86_64.tar.g
 fi
 #Reference https://cmake.org/files/v3.27/cmake-3.27.0-linux-x86_64.sh
 
-cmc2=`sudo tar -xf ./cmake-${cmv}-linux-x86_64.tar.gz -C /opt/cmake-${cmv}-linux-x86_64`
+cmc2=`sudo tar -xf ./cmake-${cmv}-linux-x86_64.tar.gz -C /opt/`
 cmc3=`sudo ln -sf /opt/cmake-${cmv}-linux-x86_64/bin/cmake /usr/local/bin/cmake`
-echo "export PATH=/usr/local/bin/cmake:$PATH" >> ~/.bashrc
+`echo "export PATH=/usr/local/bin/cmake:$PATH" >> ~/.bashrc`
 `source ~/.bashrc`
 cmcs=`cmake --version`
 cmcs1="$?"

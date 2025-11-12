@@ -3,3 +3,4 @@ wget*
 TensorRT-LLM
 *.zip
 .*
+ucx*
