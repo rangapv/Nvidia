@@ -4,3 +4,4 @@ TensorRT-LLM
 *.zip
 .*
 ucx*
+model*
