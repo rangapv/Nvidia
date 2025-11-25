@@ -11,7 +11,7 @@ for i in ${deep1}
 do
 	dep1=`sudo $cm1 install -y $i`
 	dep1s="$?"
-	echo "install of $i is $dep1s and cm1 is $cm1"
+	#echo "install of $i is $dep1s and cm1 is $cm1"
 
 done
 

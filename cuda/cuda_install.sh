@@ -66,9 +66,9 @@ cudavmi=`echo "$cudav" | awk '{split($0,a,"."); print a[2]}'`
 
 cudadown="y"
 
-if [[ ( -f "${cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb}" ) ]]
+if [[ ( -f "cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb" ) ]]
 then
-	echo "The file \"${cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb}\" is found in the directory"
+	echo "The file \"(cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${cudamin_ver}_amd64.deb)\" is found in the directory"
 	echo "Do you still need to Download the repo... ?"
 	echo "Press \"y\" to proceed to Download or any-other key otherwise"
 	read cudadown
@@ -100,7 +100,6 @@ then
 else
 	echo  "cuda with version ${cudav} FAILED"
 fi
-
 }
 
 cuda_inst

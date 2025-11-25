@@ -95,7 +95,6 @@ f4c=`sudo apt-get -y  update`
 f5c=`sudo apt-get -y install cudnn9-cuda-12`
 #f6c=`sudo apt-get -y install libcudnn9-samples`
 f6cpre=`sudo apt-get -y install libfreeimage3 libfreeimage-dev`
-
 }
 
 verify_cuDNN() {
