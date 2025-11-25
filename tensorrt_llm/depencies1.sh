@@ -3,6 +3,7 @@
 #04-11-25
 
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) > /dev/null 2>&1
+source <(curl -s https://raw.githubusercontent.com/rangapv/Nvidia/refs/heads/main/dep_inst.sh) > /dev/null 2>&1
 
 install_dep1() {
 
@@ -20,3 +21,6 @@ done
 #install_dep1 libssl-dev libnuma-dev
 install_dep1 libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
 #libnccl2=2.28.7-1+cuda12.9 libnccl-dev=2.28.7-1+cuda12.9 libucx-dev
+
+
+pipifinsta packaging setuptools==68

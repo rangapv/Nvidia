@@ -5,3 +5,4 @@ TensorRT-LLM
 .*
 ucx*
 model*
+cuda*

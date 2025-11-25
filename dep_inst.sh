@@ -13,23 +13,23 @@ echo "the total pip package to check is $ptcmd"
 for p in "${pip11i[@]}"
 do
 
+echo "Going to install the package $p now"
+pwcp1=`pip3 install $p`
+pwcp1s="$?"
+    if [[ ( $pwcp1s == "0" ) ]]
+    then
+	    echo "Successfully installed the package \[$p\]"
+	    ((pinsdep++))
+    else
+	    echo "Install of \[$p\] Failed"
+    fi
+
 pwc=`pip3 show $p`
 pwcs="$?"
 
 if [[ ( $pwcs == "0" ) ]]
 then
-    echo "\"$p\" is already installed @ $pwc proceeding with other checks"
-else
-        echo "Going to install the package $p now"
-	pwcp1=`pip3 install -y $p`
-	pwcp1s="$?"
-	    if [[ ( $pwcp1s == "0" ) ]]
-	    then
-		    echo "Successfully installed the package \[$p\]"
-		    ((pinsdep++))
-	    else
-		    echo "Install of \[$p\] Failed"
-	    fi
+    echo "\"$p\" is installed @ $pwc proceeding with other checks"
 fi
 
 if (( pinsdep == ptcmd ))
