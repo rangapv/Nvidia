@@ -29,13 +29,13 @@ then
 else
   for p in "${nveco1[@]}"
   do
-     res1="$(`python3 -c "import ${p}; print(${p}.__version__)"`)"
+     res1="$(python3 -c "import ${p}; print(${p}.__version__)")"
      res1s="$?"
      if [[ ( "$res1s" == "0" ) ]]
      then
-	     echo "The package $p is installed in the system"
+	     echo "The package $p is installed in the system with version# $res1"
 	else
-		echo "The package $p is missing"
+	     echo "The package $p is missing"
      fi
   done
 fi
