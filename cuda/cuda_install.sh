@@ -83,10 +83,24 @@ cudi2=`sudo dpkg -i cuda-repo-${distro}-${cudavma}-${cudavmi}-local_${cudav}-${c
 cudi3=`sudo cp /var/cuda-repo-${distro}-${cudavma}-${cudavmi}-local/cuda-*-keyring.gpg /usr/share/keyrings/`
 cudi4=`sudo apt-get -y update`
 cudi5=`sudo apt-get -y install cuda-toolkit-${cudavma}-${cudavmi}`
+cudi5s="$?"
 
-echo "export PATH=/usr/local/cuda-${cudavma}.${cudavmi}/bin:$PATH" >> ~/.bashrc
-echo "export LD_LIBRARY_PATH=/usr/local/cuda-${cudavma}.${cudavmi}/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
-`source $HOME/.bashrc`
+if [ "$cudi5s" == "0" ) ]
+then
+       finally1=`sudo apt-get install -y nvidia-open`
+       echo "export PATH=/usr/local/cuda-${cudavma}.${cudavmi}/bin:$PATH" >> ~/.bashrc
+       echo "export LD_LIBRARY_PATH=/usr/local/cuda-${cudavma}.${cudavmi}/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
+       `source $HOME/.bashrc`
+else
+	fix1cuda=`sudo apt-get -y install libnvidia-cfg1`
+	fix2cuda=`sudo dpkg -i --force-overwrite /var/cache/apt/archives/libnvidia-cfg1_590.48.01-0ubuntu1_amd64.deb`
+	fix3cuda=`sudo apt-get -y install cuda-toolkit-${cudavma}-${cudavmi}`
+	finally1=`sudo apt-get install -y nvidia-open`
+	echo "export PATH=/usr/local/cuda-${cudavma}.${cudavmi}/bin:$PATH" >> ~/.bashrc
+        echo "export LD_LIBRARY_PATH=/usr/local/cuda-${cudavma}.${cudavmi}/lib64:$LD_LIBRARY_PATH" >> ~/.bashrc
+        `source $HOME/.bashrc`
+
+fi
 }
 
 cuda_verify() {

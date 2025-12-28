@@ -90,7 +90,7 @@ done
 }
 
 
-nvidia_eco nccl libzmq3-dev libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
+nvidia_eco cuda cuDNN nccl libzmq3-dev libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
 
 pipifinsta onnx onnxruntime-gpu
 
