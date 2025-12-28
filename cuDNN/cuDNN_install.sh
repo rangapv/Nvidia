@@ -73,7 +73,18 @@ cdnv="9.14.0"
 
 #Reference: https://developer.nvidia.com/cudnn-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network&Configuration=Full
 
-cdnndown="y"
+echo "The cuDNN version to be installed is \"${cdnv}\" , on \"${ki}\" release \"${irelease}\" on the Architecture \"${architecture}\", if you need a different version of cuDNN other than \"${cdnv}\" enter \"y\" "
+read reps1
+if [ "$reps1" == "y" ]
+then
+        echo "enter the cuDNN version now(format 9.x.x)"
+        read cdn
+        cdnv=${cdn}
+else
+        echo "Continuing with the cuDNN version ${cdnv}"
+fi
+
+#cdnndown="y"
 
 echo "The cuDNN version to be installed is \"${cdnv}\" , on \"${ki}\" release \"${irelease}\" on the Architecture \"${architecture}\" "
 
