@@ -20,7 +20,12 @@ then
 else
   for p in "${nveco1[@]}"
   do
-     checkpg "dpkg -l" $p    
+	  if [[ ( "$p" == "cuDNN" ) ]]
+	  then
+              checkpg "dpkg -l" $p    
+          else
+              checkpg "dpkg-query -W" $p 
+	  fi
   done
 fi  
 }
@@ -36,7 +41,7 @@ then
 else
   for p in "${nveco1[@]}"
   do
-     res1="$(python3 -c "import ${p}; print(${p}.__version__)")"
+     res1="$(python3 -c "import ${p}; print(${p}.__version__)") >>/dev/null 2>&1"
      res1s="$?"
      if [[ ( "$res1s" == "0" ) ]]
      then
@@ -59,12 +64,15 @@ then
 else
     output=`$1 | grep $2`
     outps="$?"
+    #echo "*******"
+    #echo "1 is $1 and 2 is $2"
+    #echo "*******"
     if [[ ($outps != 0) ]]
     then
          echo "Looks like the package $2 is missing"
          echo "$output"
     else
-   #     echo "$output"
+        #echo "$output"
         flag_setting dummy $2 $output 
     fi
 fi
@@ -116,15 +124,18 @@ fi
 done
 }
 
-#nvidia_eco cuda cuDNN
-nvidia_eco cuda cuDNN nccl libzmq3-dev libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
+nvidia_eco cuda cuDNN tensorrt tensorrt_llm
+#nvidia_eco cuda cuDNN nccl libzmq3-dev libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
 pipifinsta onnx onnxruntime-gpu
-nvidia_system tensorrt tensorrt_llm
+#nvidia_system tensorrt tensorrt_llm
 
-echo "cuda is $cudap"
-echo "cuDNN is $cuDNNp"
-echo "tensorrt is $tensorrtp"
-echo "tensorrt_llm is $tensorrtllmp"
-echo "onnx is $onnxp"
-echo "onnxruntime-gpu is $onnxruntimegpup"
+echo ""
+echo "1 indicates the package is installed; 0 is otherwise"
+echo ""
 
+echo "cuda is $cudap to check the version \"nvcc -V\" or python3 -c \"import cuda.bindings; print(cuda.bindings.__version__)\""
+echo "cuDNN is $cuDNNp to check the version \"dpkg -l | grep cuDNN\""
+echo "tensorrt is $tensorrtp to check the version\"dpkg-query -W tensorrt\""
+echo "tensorrt_llm is $tensorrtllmp to check the version python3 -c \"import tensorrt_llm; print(tensorrt_llm.__version__)\""
+echo "onnx is $onnxp to check the version \"pip3 show onnx\""
+echo "onnxruntime-gpu is $onnxruntimegpup to check the version \"pip3 show onnxruntime-gpu\""
