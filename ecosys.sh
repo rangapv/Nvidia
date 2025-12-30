@@ -5,9 +5,10 @@
 cudap=0
 cuDNNp=0
 tensorrtp=0
-tensorrtllmp=0
+tensorrt_llmp=0
 onnxp=0
-onnxruntimegpup=0
+onnxruntime_gpup=0
+
 
 nvidia_eco(){
 nveco1=("$@")
@@ -82,7 +83,7 @@ fi
 flag_setting() {
 if [[ "$2" = "onnxruntime-gpu" ]]
 then
-	set $2 "onnxruntimegpu"
+	set $2 "onnxruntime_gpu"
 fi
 
  #echo "2 is $2"
@@ -124,10 +125,10 @@ fi
 done
 }
 
-nvidia_eco cuda cuDNN tensorrt tensorrt_llm
-#nvidia_eco cuda cuDNN nccl libzmq3-dev libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
+nvidia_eco cuda cuDNN tensorrt
+#nvidia_eco cuda cuDNN tensorrt nccl libzmq3-dev libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
 pipifinsta onnx onnxruntime-gpu
-#nvidia_system tensorrt tensorrt_llm
+nvidia_system tensorrt_llm
 
 echo ""
 echo "1 indicates the package is installed; 0 is otherwise"
@@ -136,6 +137,6 @@ echo ""
 echo "cuda is $cudap to check the version \"nvcc -V\" or python3 -c \"import cuda.bindings; print(cuda.bindings.__version__)\""
 echo "cuDNN is $cuDNNp to check the version \"dpkg -l | grep cuDNN\""
 echo "tensorrt is $tensorrtp to check the version\"dpkg-query -W tensorrt\""
-echo "tensorrt_llm is $tensorrtllmp to check the version python3 -c \"import tensorrt_llm; print(tensorrt_llm.__version__)\""
+echo "tensorrt_llm is $tensorrt_llmp to check the version python3 -c \"import tensorrt_llm; print(tensorrt_llm.__version__)\""
 echo "onnx is $onnxp to check the version \"pip3 show onnx\""
-echo "onnxruntime-gpu is $onnxruntimegpup to check the version \"pip3 show onnxruntime-gpu\""
+echo "onnxruntime-gpu is $onnxruntime_gpup to check the version \"pip3 show onnxruntime-gpu\""
