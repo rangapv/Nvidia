@@ -6,3 +6,4 @@ TensorRT-LLM
 ucx*
 model*
 cuda*
+*.whl
