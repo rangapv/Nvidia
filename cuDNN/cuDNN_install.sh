@@ -84,7 +84,7 @@ else
         echo "Continuing with the cuDNN version ${cdnv}"
 fi
 
-#cdnndown="y"
+cdnndown="y"
 
 echo "The cuDNN version to be installed is \"${cdnv}\" , on \"${ki}\" release \"${irelease}\" on the Architecture \"${architecture}\" "
 
@@ -96,7 +96,7 @@ then
 	read cdnndown
 fi
 
-if [[ $cdnndown == "y" ]]
+if [[ ( "$cdnndown" == "y" ) ]]
 then
 f1c=`sudo wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb`
 fi
