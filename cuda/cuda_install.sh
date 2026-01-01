@@ -85,7 +85,7 @@ cudi4=`sudo apt-get -y update`
 cudi5=`sudo apt-get -y install cuda-toolkit-${cudavma}-${cudavmi}`
 cudi5s="$?"
 
-if [ "$cudi5s" == "0" ) ]
+if [[ ("$cudi5s" == "0") ]]
 then
        finally1=`sudo apt-get install -y nvidia-open`
        echo "export PATH=/usr/local/cuda-${cudavma}.${cudavmi}/bin:$PATH" >> ~/.bashrc
