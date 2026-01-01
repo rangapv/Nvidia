@@ -56,6 +56,7 @@ else
 	exit
 fi
 
+reps3="n"
 echo "The tensorRT version to be installed is \"${tensorv}\" , on \"${ki}\" release \"${irelease}\" in the Architecture \"${architecture}\" and the cuda version is \"${cudama}.${cudami}\", if you need a different version of tensorRT other than \"${tensorv}\" enter \"y\""
 read reps3
 
