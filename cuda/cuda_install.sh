@@ -48,21 +48,24 @@ cudamin_ver="575.51.03-1"
 
 #double check cudav and cudamin_ver in this website
 #https://developer.nvidia.com/cuda-12-9-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
+#wget https://developer.download.nvidia.com/compute/cuda/13.2.0/local_installers/cuda-repo-ubuntu2204-13-2-local_13.2.0-595.45.04-1_amd64.deb
 
-echo "The cuda version to be installed is ${cudav} , on ${ki} relaese ${irelease} in the Architecture ${architecture}, if you need a different version of cuda other than ${cudav} enter y "
+echo "The cuda version to be installed is ${cudav} with ${cudamin_ver} as min/subscipt version, on ${ki} relaese ${irelease} in the Architecture ${architecture}, if you need a different version of cuda other than ${cudav} enter y "
 read reps2
 if [ "$reps2" == "y" ]
 then
 	echo "enter the cuda version now(format 11/12.x.x)"
 	read cudn
 	cudav=${cudn}
+	echo "enter the cuda subscript version(format 595.45.04-1)"
+	read cudmiv
+	cudamin_ver=${cudmiv}
 fi
 
-echo "Pre-paring to install cuda version ${cudav}"
+echo "Pre-paring to install cuda version ${cudav} with ${cudamin_ver}"
 
 cudavma=`echo "$cudav" | awk '{split($0,a,"."); print a[1]}'`
 cudavmi=`echo "$cudav" | awk '{split($0,a,"."); print a[2]}'`
-
 
 cudadown="y"
 
