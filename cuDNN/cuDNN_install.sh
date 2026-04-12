@@ -38,11 +38,12 @@ cuda_version="cuda${nvc21}"
 #sudo $cmd1 install libcudnn9-samples=${cudnn_version}-1+${cuda_version}
 }
 
-cuda_cuDNN_inst() {
+cuda_cuDNN_inst_local() {
 
 distro="${ki}${irelease}"
 architecture="${ARCH}"
-cdnv="9.6.0"
+#cdnv="9.6.0"
+cdnv="9.20.0"
 echo "The cuDNN version to be installed is \"${cdnv}\" , on \"${ki}\" release \"${irelease}\" on the Architecture \"${architecture}\", if you need a different version of cuDNN other than \"${cdnv}\" enter \"y\" "
 read reps1
 if [ "$reps1" == "y" ]
@@ -69,7 +70,8 @@ cuda_cuDNN_inst_new() {
 
 distro="${ki}${irelease}"
 architecture="${ARCH}"
-cdnv="9.14.0"
+#cdnv="9.14.0"
+cdnv="9.20.0"
 
 #Reference: https://developer.nvidia.com/cudnn-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_network&Configuration=Full
 
@@ -117,9 +119,9 @@ echo "the test result is $vrcdnn3"
 
 }
 
-#cuda_cuDNN_inst
+cuda_cuDNN_inst_local
 
-cuda_cuDNN_inst_new
+#cuda_cuDNN_inst_new
 
 verify_cuDNN
 
