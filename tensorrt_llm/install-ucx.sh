@@ -9,8 +9,8 @@ uc1=`git clone https://github.com/openucx/ucx.git`
 uc11=`sudo mkdir /usr/local/bin/ucx`
 uc12=`$HOMEDIR/ucx/autogen.sh`
 uc21=`$HOMEDIR/ucx/contrib/configure-release --prefix=/usr/local/bin/ucx`
-uc3=`$HOMEDIR/ucx/make -j8`
-uc5=`$HOMEDIR/ucx/sudo make install`
+uc3=`$HOMEDIR/ucx/contrib/make -j8`
+uc5=`$HOMEDIR/ucx/contrib/sudo make install`
 uc51=`"export PATH=:/usr/local/bin/ucx/bin:$PATH" >> ~/.bashrc`
 `source ~/.bashrc`
 uc6=`ucx_info -v`
