@@ -43,8 +43,10 @@ cuda_inst(){
 
 distro="${ki}${irelease}"
 architecture="${ARCH}"
-cudav="12.9.0"
-cudamin_ver="575.51.03-1"
+#cudav="12.9.0"
+#cudamin_ver="575.51.03-1"
+cudav="13.2.0"
+cudamin_ver="595.45.04-1"
 
 #double check cudav and cudamin_ver in this website
 #https://developer.nvidia.com/cuda-12-9-0-download-archive?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local
