@@ -41,7 +41,8 @@ step52=`python3 -m pip3 install tensorrt_dispatch-*-cp3x-none-linux_x86_64.whl`
 
 tensorRT_ins(){
 
-tensorv="10.10.0"
+#tensorv="10.10.0"
+tensorv="10.16.1"
 `source $HOME/.bashrc`
 cuda_version=`nvcc -V`
 cudavers="$?"
@@ -80,7 +81,8 @@ fi
 
 if [[ $tnsrtown == "y" ]]
 then
-tr1=`sudo wget https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/${tensorv}/local_repo/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
+#tr1=`sudo wget https://developer.nvidia.com/downloads/compute/machine-learning/tensorrt/${tensorv}/local_repo/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
+tr1=`sudo wget https://developer.download.nvidia.com/compute/tensorrt/${tensorv}/local_installers/nv-tensorrt-local-repo-${distro}-${tensorv}-cuda-${cudama}.${cudami}_1.0-1_${architecture}.deb`
 fi
 
 #exit
