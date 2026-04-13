@@ -4,7 +4,8 @@
 
 cuda_python(){
 
-cupyv="12.9.4"
+#cupyv="12.9.4"
+cupyv="13.2.0"
 
 echo "The verison of cuda-python to be installed is ${cupyv}, if you need a different version press y"
 read cupnv
