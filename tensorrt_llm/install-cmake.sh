@@ -6,10 +6,23 @@ source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.s
 
 cmake1() {
 
-cmv="3.30.0"
+#cmv="3.30.0"
+cmv="4.1.0"
 cmv1=`echo $cmv | (cut -d '.' -f 1,2)`
 #echo "cmv1 is ${cmv1}"
 cmakedown="y"
+
+echo "The version of cmake to be installed is $cmv1"
+echo "if you need a different verison of cmake press \"y\" "
+read cmvresp
+
+if [ "$cmvresp" == "y" ]
+then
+	echo "Enter the new verion for cmake to be installed..."
+	read newcmake
+	cmv=${newcmake}
+        cmv1=`echo $cmv | (cut -d '.' -f 1,2)`
+fi
 
 if [[ ( -f "cmake-${cmv}-linux-x86_64.tar.gz" ) ]]
 then
@@ -19,7 +32,7 @@ then
 	read cmakedown
 fi
 
-if [[ $cmakedown == "y" ]]
+if [ "$cmakedown" == "y" ]
 then
 cmc1=`sudo wget https://cmake.org/files/v${cmv1}/cmake-${cmv}-linux-x86_64.tar.gz`
 fi

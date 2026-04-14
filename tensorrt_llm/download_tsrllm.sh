@@ -9,9 +9,10 @@ glfs1=`curl -s https://packagecloud.io/install/repositories/github/git-lfs/scrip
 glfs2=`sudo $cm1 install git-lfs`
 }
 
-tsrllmv="v1.0.0"
+#tsrllmv="v1.0.0"
+tsrllmv="v1.2.0"
 
-echo "The version of tenorrt_LLM to be cloned ic ${tsrllmv}"
+echo "The version of tenorrt_LLM to be cloned is ${tsrllmv}"
 echo "if you need a different version press \"y\""
 read tsrllmvn
 
