@@ -6,7 +6,19 @@ source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.s
 
 insta_ninja() {
 
-ninjav="1.13.1"
+#ninjav="1.13.1"
+ninjav="1.13.2"
+
+echo "The version of ninja to be installed is $ninjav"
+echo "if you need a different verison of cmake press \"y\" "
+read ninjresp
+
+if [ "$ninjresp" == "y" ]
+then
+	echo "Enter the new verion of ninja to be installed..."
+	read newninja
+	ninjav=${newninja}
+fi
 
 ninjadown="y"
 
