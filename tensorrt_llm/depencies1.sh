@@ -19,7 +19,7 @@ done
 }
 
 #install_dep1 libssl-dev libnuma-dev
-install_dep1 libssl-dev libopenmpi-dev libzmq3-dev libnccl2 libnccl-dev libnuma-dev
+install_dep1 libssl-dev libopenmpi-dev libzmq3-dev g++-12 libnccl2 libnccl-dev libnuma-dev
 #libnccl2=2.28.7-1+cuda12.9 libnccl-dev=2.28.7-1+cuda12.9 libucx-dev
 
 
