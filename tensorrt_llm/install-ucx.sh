@@ -3,15 +3,18 @@
 #07-11-25
 
 source <(curl -s https://raw.githubusercontent.com/rangapv/bash-source/main/s1.sh) > /dev/null 2>&1
+
 HOMEDIR="$PWD"
+echo "$HOMEDIR"
 ins_ucx() {
+
 uc1=`git clone https://github.com/openucx/ucx.git`
 uc11=`sudo mkdir /usr/local/bin/ucx`
-uc12=`$HOMEDIR/ucx/autogen.sh`
-uc21=`$HOMEDIR/ucx/contrib/configure-release --prefix=/usr/local/bin/ucx`
-uc3=`$HOMEDIR/ucx/contrib/make -j8`
-uc5=`$HOMEDIR/ucx/contrib/sudo make install`
-uc51=`"export PATH=:/usr/local/bin/ucx/bin:$PATH" >> ~/.bashrc`
+uc12=`cd $HOMEDIR/ucx; ./autogen.sh`
+uc21=`cd $HOMEDIR/ucx/contrib;./configure-release --prefix=/usr/local/bin/ucx`
+uc3=`cd $HOMEDIR/ucx/contrib;sudo make -j8`
+uc5=`cd $HOMEDIR/ucx/contrib;sudo make install`
+`echo "export PATH=:/usr/local/bin/ucx/bin:$PATH" >> ~/.bashrc`
 `source ~/.bashrc`
 uc6=`ucx_info -v`
 #openucx --version
